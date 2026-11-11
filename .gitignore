@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+company-profile.json
+runtime-state.json
+*.zip
+*.zip.sha256

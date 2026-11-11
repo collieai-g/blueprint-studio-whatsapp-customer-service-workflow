@@ -1,0 +1,22 @@
+{
+  "schema_version": "2.0",
+  "account_reference": null,
+  "work_chat_reference": null,
+  "browser_tab_reference": null,
+  "profile_reference": null,
+  "activation_baseline_at": null,
+  "schedule": {
+    "id": null,
+    "requested_interval_minutes": null,
+    "readback_status": "not_created",
+    "last_actual_trigger_at": null
+  },
+  "patrol": {
+    "running_id": null,
+    "started_at": null,
+    "finished_at": null,
+    "send_attempts": 0
+  },
+  "conversations": [],
+  "pending_handoffs": []
+}

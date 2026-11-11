@@ -1,0 +1,68 @@
+{
+  "format": "blueprint-workflow-portable",
+  "format_version": "2.0",
+  "package_version": "2.0.0",
+  "entrypoint": "START_HERE.md",
+  "agent_instructions": "portable/AGENT_INSTRUCTIONS.md",
+  "defaults": "settings.defaults.json",
+  "profile_example": "portable/company-profile.example.json",
+  "state_example": "portable/runtime-state.example.json",
+  "recurring_prompt": "AUTOMATION_PROMPT.md",
+  "release_asset": "whatsapp-customer-service-agent.zip",
+  "workflow": {
+    "title": "WhatsApp Web 客服 AI 工作流",
+    "steps": [
+      {
+        "id": "open_whatsapp",
+        "instruction": "沿用同一 WhatsApp Web 分頁，必要時開啟官方登入頁由帳戶擁有人掃碼，核實登入和客服帳戶。"
+      },
+      {
+        "id": "resolve_company_settings",
+        "depends_on": ["open_whatsapp"],
+        "instruction": "對話式收集公司、來源、客服範圍、回覆與人工接手政策，合併預設值及當次私人設定，保存已核實帳戶及處理進度。"
+      },
+      {
+        "id": "apply_schedule",
+        "depends_on": ["resolve_company_settings"],
+        "action": "create_or_update_native_schedule",
+        "authorization": "當次使用者已授權自動巡查",
+        "outcomes": ["configured", "native_schedule_unavailable", "manual_only", "awaiting_authorization"],
+        "interval_from": "schedule.interval_minutes",
+        "work": "AUTOMATION_PROMPT.md",
+        "target": "同一個工作聊天及已核實的帳戶",
+        "codex_adapter": {
+          "tool": "automation_update",
+          "kind": "heartbeat",
+          "destination": "thread",
+          "frequency": "MINUTELY",
+          "status": "ACTIVE"
+        },
+        "required_readback": ["schedule_id", "work_chat", "interval_minutes", "enabled"],
+        "instruction": "解析當次設定的 IANA 時區，核對主機能力，以原生工具建立或更新唯一排程並讀回設定。已有授權時在首輪前完成排程。沒有排程能力時記錄缺項，接續獲准的手動首輪。"
+      },
+      {
+        "id": "run_initial_patrol",
+        "depends_on": ["apply_schedule"],
+        "schedule_outcomes": ["configured", "native_schedule_unavailable", "manual_only"],
+        "instruction": "有執行授權後完成首輪觀察或巡查。若已經有定時輪次開始，讓它接續並核對結果。缺排程能力時呈報實際手動結果。"
+      },
+      {
+        "id": "scheduled_patrol",
+        "depends_on": ["apply_schedule"],
+        "schedule_outcomes": ["configured"],
+        "instruction": "實際觸發時讀回當次私人進度，確認營業時段、帳戶及適用待答，依回覆及發送授權處理。"
+      },
+      {
+        "id": "observe_and_continue",
+        "trigger": "任何手動或定時巡查核實成功發送",
+        "instruction": "每次核實成功回覆後重設觀察時間。實際新訊息才觸發延伸回覆，按回覆上限保留待辦，下輪接續。"
+      }
+    ],
+    "completion_criteria": [
+      "已核實登入、公司資料、有效設定、授權及私人執行狀態",
+      "原生排程已建立或更新並讀回頻率、目標及啟用狀態，或已有具體主機限制",
+      "分別記錄首輪執行、實際定時觸發及任何傳送結果",
+      "營業外、回覆上限、未明結果及人工接手有清楚的待辦狀態"
+    ]
+  }
+}

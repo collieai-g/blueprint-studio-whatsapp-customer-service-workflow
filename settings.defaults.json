@@ -1,0 +1,19 @@
+{
+  "schema_version": "2.0",
+  "schedule": {
+    "interval_minutes": 5,
+    "timezone": "Asia/Hong_Kong",
+    "weekly_windows": []
+  },
+  "observation": {
+    "initial_seconds": 30,
+    "after_reply_seconds": 30,
+    "poll_seconds": 10
+  },
+  "reply_limits": {
+    "max_per_conversation_per_patrol": 3,
+    "max_per_patrol": 10,
+    "max_characters": 600,
+    "max_clarifying_questions": 2
+  }
+}

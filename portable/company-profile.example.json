@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0",
+  "company_name": "示範服務公司（請替換）",
+  "business_services": [],
+  "authorized_reference_urls": [],
+  "reply_scope": {
+    "channel": "WhatsApp Web",
+    "conversation_types": ["one_to_one_text"],
+    "selection_rule": "處理當次使用者授權範圍內的一對一文字客服查詢",
+    "include_existing_unanswered": false,
+    "excluded_categories": ["official_notifications", "private_chats", "groups", "voice", "images", "files"]
+  },
+  "language": {
+    "primary": "繁體中文",
+    "tone": "自然、專業、友善",
+    "follow_customer_language": true
+  },
+  "reply_policy": {
+    "allowed_topics": [],
+    "unknown_information": "按需要補問或交回負責人",
+    "pricing": {
+      "mode": "owner_review",
+      "approved_price_data": null
+    },
+    "optional_difficulty_rating": {
+      "enabled": false,
+      "scale_min": 1,
+      "scale_max": 5,
+      "rubric": null
+    },
+    "prohibited_commitments": ["未確認的價錢或優惠", "未確認的工期或交付", "未安排的人工接手"],
+    "stop_request_policy": "客戶要求停止聯繫時停止自動發送"
+  },
+  "handoff": {
+    "destination": "目前工作聊天中的公司負責人",
+    "triggers": ["未知公司政策", "需要負責人決定", "無法核實傳送結果"]
+  },
+  "settings": {},
+  "authorization": {
+    "auto_patrol_allowed": false,
+    "auto_send_allowed": false,
+    "scope_confirmation": null
+  }
+}
