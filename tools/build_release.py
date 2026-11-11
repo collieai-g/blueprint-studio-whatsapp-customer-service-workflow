@@ -27,7 +27,7 @@ FILES = (
 )
 PRIVATE_MARKERS = re.compile(
     r"\b[A-Za-z]:[\\/]|\b(?:task|event|workflow)_[a-f0-9]{24,}\b"
-    r"|blueprint-agent-studio\.onrender\.com|藍圖工作室|sk-[A-Za-z0-9_-]{16,}",
+    r"|blueprint-agent-studio\.onrender\.com|sk-[A-Za-z0-9_-]{16,}",
     re.IGNORECASE,
 )
 
@@ -66,6 +66,8 @@ def collect_files():
     resolve_settings(profile)
     manifest = {
         "package_version": version,
+        "workflow_title": workflow["workflow"]["title"],
+        "publisher": workflow["publisher"],
         "entrypoint": workflow["entrypoint"],
         "files": {name: {"sha256": sha256(data), "bytes": len(data)} for name, data in payloads.items()},
     }

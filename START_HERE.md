@@ -1,10 +1,10 @@
-# WhatsApp 客服工作流 V2
+# Blueprint Studio WhatsApp Customer Service Workflow
 
-收到 GitHub Release 連結或 ZIP 的 AI，請從這裏開始設定和執行工作流。
+這是藍圖工作室開發的 WhatsApp 客戶服務工作流。收到 GitHub 連結或 ZIP 的 AI，請按下列步驟，使用接收者自己的公司資料及 WhatsApp 帳戶完成設定。
 
 ## 取得同一版本的檔案
 
-1. 若收到 GitHub Release 連結，從該發行頁取得 `whatsapp-customer-service-agent.zip`，保留發行版本。若收到 ZIP，直接使用該檔案。發行頁有提供 SHA-256 時，核對檔案雜湊。發現不符便重新取得同版資產並核實。
+1. 若收到儲存庫網址，按 README 的下載連結取得 ZIP。若收到 GitHub 發行頁，選取附件 `whatsapp-customer-service-agent.zip`。若收到 ZIP 下載網址或檔案，直接取得並讀取該檔案。記下發行版本。有同版 SHA-256 附件時核對檔案雜湊，發現不符便重新取得並核實。
 2. 解壓後先讀 `manifest.json`，核對其版本與這次 GitHub Release 對應。若直接收到 ZIP，記下清單中的版本。核對及讀取 `START_HERE.md`、`portable/AGENT_INSTRUCTIONS.md`、`settings.defaults.json`、`AUTOMATION_PROMPT.md` 及 `workflow.json`。在 Codex 使用 `workflow.json` 的原生排程映射。缺少檔案或無法取得資產時，指出具體缺項。
 3. 核對主機可用的瀏覽器、私人狀態及原生排程功能。先沿用已登入且屬於目標帳戶的 [WhatsApp Web](https://web.whatsapp.com/)，或開啟官方網頁讓使用者本人在手機掃碼，再從聊天介面核對登入。
 

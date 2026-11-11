@@ -1,7 +1,11 @@
 {
   "format": "blueprint-workflow-portable",
   "format_version": "2.0",
-  "package_version": "2.0.0",
+  "package_version": "2.0.1",
+  "publisher": {
+    "name": "Blueprint Studio",
+    "name_zh_hant": "藍圖工作室"
+  },
   "entrypoint": "START_HERE.md",
   "agent_instructions": "portable/AGENT_INSTRUCTIONS.md",
   "defaults": "settings.defaults.json",
@@ -10,7 +14,8 @@
   "recurring_prompt": "AUTOMATION_PROMPT.md",
   "release_asset": "whatsapp-customer-service-agent.zip",
   "workflow": {
-    "title": "WhatsApp Web 客服 AI 工作流",
+    "title": "Blueprint Studio WhatsApp Customer Service Workflow",
+    "title_zh_hant": "藍圖工作室 WhatsApp 客戶服務工作流",
     "steps": [
       {
         "id": "open_whatsapp",
